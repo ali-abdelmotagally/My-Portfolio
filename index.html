@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cedarville+Cursive&family=Cinzel:wght@400..900&family=DM+Serif+Display:ital@0;1&family=GFS+Didot&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+</head>
+<body>
+    
+
+
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="logo">
+            <a href="#home">AAA</a>
+        </div>
+        <div class="items">
+            <ul>
+                <li>
+                    <a href="#about">About</a>
+                </li>
+                <li>
+                    <a href="#skills">Skills</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+    <button class="menu-btn">☰</button>
+    </div>
+
+    
+
+
+    <div class="hey">
+        <h1>HEY, THIS IS
+            <a href="#about">ALI</a></h1>
+    </div>
+
+    <div class="about-container">
+    <div id="about">
+       <div class="text">
+        <h3>Get to know me</h3>
+        <p>
+            My name is Ali, I'm a passionate frontend developer based in <strong>Egypt</strong>.
+        </p>
+        <p>
+           I like to imagine, design then create and bring thoughts into reality.
+
+        </p>
+        <p>
+            I work mainly with <strong>React</strong> framework
+        </p>
+       </div>
+       <img src="ChatGPT Image Oct 3, 2026, 01_23_17 AM.png">
+    </div>
+    </div>  
+
+
+
+    <!-- Skills -->
+   
+<div class="skills-container">
+    <div id="skills">
+        <h3>Skills</h3>
+
+<div class="accordions">
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" aria-controls="panel-frontend">
+      <span class="acc-icon" aria-hidden="true"></span>Frontend
+    </button>
+    <div class="acc-panel" id="panel-frontend" role="region">
+      <div class="acc-panel-inner">
+        <div class="acc-content">
+               <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>React</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" aria-controls="panel-data">
+      <span class="acc-icon" aria-hidden="true"></span>Data Analysis
+    </button>
+    <div class="acc-panel" id="panel-data" role="region">
+      <div class="acc-panel-inner">
+        <div class="acc-content">
+            <ul>
+                <li>Excel</li>
+                <li>Power BI</li>
+                <li>SQL (MySQL, SSMS)</li>
+                <li>Python (NumPy, Pandas, Matplotlib, Seaborn)</li>
+                <li>Power Query</li>
+                <li>Data cleaning</li>
+                <li>Data visualization</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" aria-controls="panel-languages">
+      <span class="acc-icon" aria-hidden="true"></span>Languages
+    </button>
+    <div class="acc-panel" id="panel-languages" role="region">
+      <div class="acc-panel-inner">
+        <div class="acc-content">
+             <ul>
+                <li>JavaScript</li>
+                <li>Python</li>
+                <li>Java</li>
+                <li>C++</li>
+                <li>C#</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-trigger" aria-expanded="false" aria-controls="panel-tools">
+      <span class="acc-icon" aria-hidden="true"></span>General tools
+    </button>
+    <div class="acc-panel" id="panel-tools" role="region">
+      <div class="acc-panel-inner">
+        <div class="acc-content">
+             <ul>
+                <li>Git/Github</li>
+                <li>Figma</li>
+                <li>Jupyter Notebook</li>
+                <li>Kaggle</li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<style>
+
+  .acc-item {
+    background: #eadfc8;           /* beige */
+    border-radius: 35px;
+    width: fit-content;            /* closed: as wide as the title */
+    max-width: 100%;
+    overflow: hidden;
+    transition: border-radius .4s cubic-bezier(.32,.72,0,1);
+  }
+  .acc-item.is-open {
+    width: 100%;     
+    border-radius: 28px;
+  }
+
+  .acc-trigger {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 30px 20px 18px;
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    color: #3b3226;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .acc-icon {
+    position: relative;
+    flex: none;
+    width: 28px; height: 28px;
+    border: 1.5px solid #3b3226;
+    border-radius: 50%;
+    transition: transform .4s cubic-bezier(.32,.72,0,1);
+  }
+  .acc-icon::before, .acc-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    background: #3b3226;
+    transform: translate(-50%, -50%);
+  }
+  .acc-icon::before { width: 12px; height: 1.5px; }
+  .acc-icon::after  { width: 1.5px; height: 12px; }
+  .acc-item.is-open .acc-icon { transform: rotate(45deg); }
+
+  .acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .4s cubic-bezier(.32,.72,0,1);
+  }
+  .acc-item.is-open .acc-panel { grid-template-rows: 1fr; }
+  .acc-panel-inner { overflow: hidden; min-height: 0; }
+  .acc-content {
+    padding: 0 30px 26px 60px;
+    font: 17px/1.47 -apple-system, "SF Pro Text", Inter, Arial, sans-serif;
+    color: #3b3226;
+  }
+  /* while one is open, the others get out of the way */
+.skills.has-open .acc-item:not(.is-open) {
+  display: none;
+}
+
+/* open item: title is no longer clickable, only the X is */
+.acc-item.is-open .acc-trigger {
+  cursor: default;
+}
+.acc-item.is-open .acc-icon {
+  cursor: pointer;
+}
+</style>
+
+<script>
+  const items = document.querySelectorAll('.acc-item');
+
+  items.forEach(item => {
+    const trigger = item.querySelector('.acc-trigger');
+
+    trigger.addEventListener('click', () => {
+      const willOpen = !item.classList.contains('is-open');
+
+      // close every item first, so opening one cancels the other
+      items.forEach(i => {
+        i.classList.remove('is-open');
+        i.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // then open the clicked one (unless it was already open, which just closes it)
+      if (willOpen) {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+
+<!-- scroll-up button -->
+ <div class="scroll-up"> ↑ </div>
+ 
+
+    <script src="script.js"></script>
+</body>
+</html>
