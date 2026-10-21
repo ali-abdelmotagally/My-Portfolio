@@ -1,304 +1,325 @@
+/* ==========================================================================
+   PORTFOLIO STYLES
+   1. Variables   2. Base   3. Navbar   4. Hero   5. Cards (about / skills) + footer
+   6. Accordion   7. Scroll-up button
+ 
+   To add a new section: copy a <section class="section"> block from index.html.
+   Everything inside it (.card, h3, p, .acc-item) is already styled.
+   ========================================================================== */
+ 
+ 
+/* 1. VARIABLES ----------------------------------------------------------- */
 :root {
-   --main-color: #f1f1f1;
-   --hover-color: beige;
-   --heading-font: "Cinzel", serif;
-   --text-font: "Montserrat", sans-serif;
-   --main-padding: 0.5rem;
-   --medium-padding: 1rem;
-   --large-padding: 1.5rem;
+    --main-color: #f1f1f1;
+    --hover-color: beige;
+    --dark: #121212;
+    --accent: #3b3226;
+    --accent-bg: #eadfc8;
+ 
+    --heading-font: "Cinzel", serif;
+    --text-font: "Montserrat", sans-serif;
+ 
+    --main-padding: 0.5rem;
+    --medium-padding: 1rem;
+    --large-padding: 1.5rem;
+    --card-padding: clamp(1rem, 3vw, 2rem);
+ 
+    --nav-height: 60px;
+    --content-width: min(65%, 85rem);   /* one width shared by hero + every card */
+    --section-gap: 4rem;                /* one gap shared by every section */
+    --transition: 0.3s ease-in-out;
 }
-
-
+ 
+@media (max-width: 768px) {
+    :root {
+        --content-width: 90%;
+        --section-gap: 2.5rem;
+    }
+}
+ 
+ 
+/* 2. BASE ---------------------------------------------------------------- */
+/* border-box only on the layout pieces I added, so your accordion keeps its original sizing */
+.nav, .section, .card, .footer, .scroll-up {
+    box-sizing: border-box;
+}
+ 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 1rem);   /* sticky nav no longer covers anchors */
+}
+ 
 body {
-  margin: 0;
-  min-height: 100vh;
-
-  background:#121212;
-  box-sizing: border-box;
+    margin: 0;
+    min-height: 100vh;
+    background: var(--dark);
+    font-family: var(--text-font);
 }
-
-
-.nav{
+ 
+ 
+/* 3. NAVBAR -------------------------------------------------------------- */
+.nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
-
+ 
     width: 100%;
-    height: 60px;
-
+    height: var(--nav-height);
+    padding-right: var(--medium-padding);
+ 
     background: rgba(20, 20, 20, 0.45);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
-
-
-
-
-
-    .logo{
-        a{
-            text-decoration: none;
-            color: #f1f1f1;
+ 
+    .logo {
+        a {
             display: inline-block;
-
-            margin-top: 4px;
-            margin-left: 8px;
-
-            color:#f1f1f1;
+            margin-left: var(--main-padding);
+ 
+            text-decoration: none;
+            color: var(--main-color);
+            font-family: var(--heading-font);
             font-size: 3rem;
             font-weight: 700;
-            font-family: "Cinzel", serif;
+            line-height: 1;
             letter-spacing: -16px;
-
-            transition: color 0.3s ease-in-out;
+ 
+            transition: color var(--transition);
+ 
+            &:hover {
+                color: var(--hover-color);
+            }
         }
-    a:hover{
-        color: beige;
     }
-}
-
-    .items{
-        ul{
+ 
+    .items {
+        ul {
             display: flex;
             list-style: none;
             margin: 0;
-            padding-top: 20px;
-            li{
+            padding: 0;
+ 
+            li {
                 margin: 0 12px;
-                a{
+ 
+                a {
                     text-decoration: none;
-                    color: #f1f1f1;
+                    color: var(--main-color);
                     text-transform: uppercase;
-                    font-family: "Montserrat", sans-serif;
+                    font-family: var(--text-font);
                     font-size: 1.12rem;
-
-                    transition: color 0.3s ease-in-out;
-                }
-                a:hover{
-                    color: beige;
+ 
+                    transition: color var(--transition);
+ 
+                    &:hover {
+                        color: var(--hover-color);
+                    }
                 }
             }
         }
     }
-
 }
-
+ 
 .menu-btn {
     display: none;
     background: none;
     border: none;
-    color: #f1f1f1;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1rem;
+    color: var(--main-color);
+    font-family: var(--text-font);
+    font-size: 1.5rem;
     cursor: pointer;
 }
-
-
+ 
 @media (max-width: 768px) {
-
+ 
     .nav {
         flex-direction: column;
-        align-items: center;
+        justify-content: flex-start;
+        padding-right: 0;
     }
-
+ 
     .logo {
-        width: 100%;
-        height: 60px;
-        border-bottom: 1px #f1f1f18c solid;
         display: flex;
         justify-content: center;
-
+        align-items: center;
+        width: 100%;
+        height: var(--nav-height);
+ 
         a {
-            display: inline-block;
-            padding-right: 20px;
-            
+            padding-right: 20px;   /* offsets the negative letter-spacing so the logo looks centered */
         }
     }
-
+ 
+    /* menu drops down over the page, so the navbar itself never changes height */
     .items {
-    display: block;
-    width: 100%;
-    background: rgba(20, 20, 20, 0.45);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-
-
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(20, 20, 20, 0.92);
+ 
+        ul {
+            flex-direction: column;
+            align-items: center;
+            gap: var(--medium-padding);
+            padding: var(--large-padding) 0;
+        }
     }
-
-    .items ul {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
+ 
+    /* separator line only while the menu is visible */
+    .nav:not(.scrolled) .logo,
+    .nav.menu-open .logo {
+        width: 90%;
+        border-bottom: 1px solid #f1f1f18c;
     }
-
-    /* After scrolling */
-  .nav.scrolled {
-    position: sticky;
-    top: 0;
-}
-
-.nav.scrolled .logo {
-    width: 100%;
-}
-
-.nav.scrolled .items {
-    display: none;
-}
-
-.nav.scrolled .menu-btn {
-    display: block;
-
-    position: absolute;
-    right: 20px;
-    top: 20px;
-}
-
-.nav.scrolled.menu-open .logo {
-    width: 90%;
-    border-bottom: 1px #f1f1f18c solid;
-}
-
-.nav.scrolled.menu-open .items {
-    display: block;
-    
-}
-
-.nav.scrolled.menu-open .menu-btn {
-    display: block;
-
-}
-}
-
-.hey{
-    width: 100%;
-    max-width: 85rem;
-    margin: 2rem auto;
-    padding: 0;
-
-    h1{
-        font-family: "Cinzel", serif;
-        font-size: clamp(1rem, 12vw, 10rem);
-        color: #f1f1f1;
-        padding-top: 65vh;
-        margin: 0rem;
+ 
+    /* after scrolling: menu collapses behind the hamburger button */
+    .nav.scrolled .items {
+        display: none;
     }
-
-    a{
+ 
+    .nav.scrolled.menu-open .items {
+        display: block;
+    }
+ 
+    .nav.scrolled .menu-btn {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 1.25rem;
+        height: var(--nav-height);
+    }
+}
+ 
+ 
+/* 4. HERO ---------------------------------------------------------------- */
+.hey {
+    display: flex;
+    align-items: flex-end;
+    width: var(--content-width);
+    min-height: calc(100vh - var(--nav-height));
+    min-height: calc(100svh - var(--nav-height));
+    margin: 0 auto;
+ 
+    h1 {
+        margin: 0;
+        font-family: var(--heading-font);
+        font-size: clamp(2.5rem, 9vw, 8rem);
+        line-height: 1.05;
+        color: var(--main-color);
+    }
+ 
+    a {
         text-decoration: none;
-        color: #f1f1f1;
-        transition: color 0.3s ease-in-out;
-    }
-    a:hover{
-        color: beige;
+        color: var(--main-color);
+        transition: color var(--transition);
+ 
+        &:hover {
+            color: var(--hover-color);
+        }
     }
 }
-
-.about-container{
-    width: 100%;
+ 
+ 
+/* 5. SECTIONS + CARDS ---------------------------------------------------- */
+.section {
     display: flex;
     justify-content: center;
-    padding-top: 4rem;
+    width: 100%;
+    padding-top: var(--section-gap);
 }
-#about{
+ 
+.card {
+    width: var(--content-width);
+    padding: var(--card-padding);
+    overflow: hidden;
+ 
+    background: var(--main-color);
+    border-radius: 0 16px 0 16px;
+    transition: background-color 0.5s ease-in-out;
+ 
+    &:hover {
+        background-color: var(--hover-color);
+    }
+ 
+    h3 {
+        margin: 0 0 var(--medium-padding);
+        font-family: var(--heading-font);
+        font-size: clamp(1.3rem, 3vw, 2.5rem);
+        line-height: 1.2;
+        color: var(--dark);
+    }
+ 
+    p {
+        margin: 0 0 0.75rem;
+        font-family: var(--text-font);
+        font-size: clamp(0.95rem, 2vw, 1.2rem);
+        line-height: 1.6;
+        color: var(--dark);
+    }
+}
+ 
+.card.alt {
+    border-radius: 16px 0 16px 0;   /* mirrored corners, like your about/skills pair */
+}
+ 
+/* about */
+#about {
     display: flex;
     justify-content: space-between;
-
-
-    width: 65%;
-    max-width: 85rem;
-    height: 500px;
-    
-
-    background: #f1f1f1;
-    border-radius: 0 16px 0 16px;
-
-    transition: background-color 0.5s ease-in-out;
-
-    
+    gap: var(--medium-padding);
+    min-height: 500px;
+    padding-bottom: 0;          /* image sits flush on the bottom edge */
 }
-
-#about:hover{
-    background-color: beige;
+ 
+.text {
+    flex: 1;
 }
-
-
-    
-    .text{
-        padding: 1rem 0 0.5rem 1rem;
-
-        h3{
-            font-family: "Cinzel", serif;
-            font-size: clamp(1.2rem, 3vw, 3rem);
-            white-space: nowrap;
-
-            color: #121212;
-
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        p{
-            font-family: "Montserrat", sans-serif;
-            font-size: clamp(0.4rem, 2vw, 1.2rem);
-            padding-top: 0;
-            
-            color: #121212;
-        }
-    }
-    
-    img{
-        padding: 0.5rem 0 0 0;
-        filter: drop-shadow(25px 20px 25px rgba(0, 0, 0, 0.3));
-    }
-
-
+ 
+.about-img {
+    display: block;             /* removes the inline-image gap underneath */
+    align-self: flex-end;
+    width: auto;
+    height: auto;
+    max-width: 45%;
+    max-height: 420px;
+    object-fit: contain;
+    filter: drop-shadow(25px 20px 25px rgba(0, 0, 0, 0.3));
+}
+ 
 @media (max-width: 768px) {
-    
-    .hey{
-        width: 65%;
-        margin: 2rem 10rem;
-
-
-          h1{
-        font-family: "Cinzel", serif;
-        font-size: 8rem;
-        color: #f1f1f1;
-        padding-top: 20vh;
-        margin: 0rem;
-            }
+    #about {
+        flex-direction: column;
+        min-height: 0;
     }
-
+ 
+    .about-img {
+        align-self: center;
+        max-width: 80%;
+        max-height: 300px;
+    }
 }
-
-
-/* skills */
-.skills-container {
-    margin: 5rem 0 0 0;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
+ 
+/* skills (your original rules; card padding is off so the accordion offsets stay exactly as before) */
 #skills {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 1rem;
-  border-radius: 16px 0 16px 0;
-  width: 65%;   
-  max-width: 85rem;
   min-height: 500px;
-  background-color: #f1f1f1;
-  transition: background-color 0.5s ease-in-out;
-
+  padding: 0;
+ 
   h3{
     font-family: "Cinzel", serif;
     font-size: clamp(1.5rem, 3vw, 3rem);
     margin: 0;
     padding: 0.5rem 0 0 1rem;
   }
-
+ 
   .accordions{
     display: flex;
     flex-direction: column;
@@ -306,31 +327,174 @@ body {
     padding: var(--main-padding);
   }
 }
-#skills:hover{
-    background-color: beige;
+ 
+/* footer */
+.footer {
+    width: min(95%, 100rem); 
+    margin: var(--section-gap) auto 0;
+    padding: var(--large-padding) 0 2rem;
+    border-top: 1px solid #f1f1f1;
 }
-
-
-
-
-
-
-/* scroll-up button */
-
-.scroll-up{
-    display: none;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.5rem;
-    border: none;
-
-    position: fixed;
-    right: 0.5rem;
-    bottom: 0.3rem;
-
+ 
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--medium-padding) var(--large-padding);
+    margin: 0 0.25rem 0 0.25rem;
+    padding: 0;
+    list-style: none;
+ 
+    a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+ 
+        color: #f1f1f1;
+        font-family: var(--text-font);
+        font-size: 0.95rem;
+        text-decoration: none;
+ 
+        transition: color var(--transition);
+ 
+        &:hover {
+            color: beige;
+        }
+    }
+}
+ 
+.icon {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+ 
+@media (max-width: 768px) {
+    .footer {
+        padding-bottom: 4.5rem;   /* keeps the links clear of the scroll-up button */
+    }
+ 
+    .footer-links {
+        flex-direction: column;
+    }
+}
+ 
+ 
+/* 6. ACCORDION (your original code, untouched) ------------------------------ */
+ 
+  .acc-item {
+    background: #eadfc8;           /* beige */
+    border-radius: 35px;
+    width: fit-content;            /* closed: as wide as the title */
+    max-width: 100%;
+    overflow: hidden;
+    transition: border-radius .4s cubic-bezier(.32,.72,0,1);
+  }
+  .acc-item.is-open {
+    width: 100%;     
+    border-radius: 28px;
+  }
+ 
+  .acc-trigger {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 30px 20px 18px;
+    font-family: "Cinzel", serif;
+    font-weight: 700;
+    color: #3b3226;
+    white-space: nowrap;
     cursor: pointer;
-
-    text-align: center;
-    color: #f1f1f1;
-
+  }
+ 
+  .acc-icon {
+    position: relative;
+    flex: none;
+    width: 28px; height: 28px;
+    border: 1.5px solid #3b3226;
+    border-radius: 50%;
+    transition: transform .4s cubic-bezier(.32,.72,0,1);
+  }
+  .acc-icon::before, .acc-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    background: #3b3226;
+    transform: translate(-50%, -50%);
+  }
+  .acc-icon::before { width: 12px; height: 1.5px; }
+  .acc-icon::after  { width: 1.5px; height: 12px; }
+  .acc-item.is-open .acc-icon { transform: rotate(45deg); }
+ 
+  .acc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .4s cubic-bezier(.32,.72,0,1);
+  }
+  .acc-item.is-open .acc-panel { grid-template-rows: 1fr; }
+  .acc-panel-inner { overflow: hidden; min-height: 0; }
+  .acc-content {
+    padding: 0 30px 26px 60px;
+    font: 17px/1.47 -apple-system, "SF Pro Text", Inter, Arial, sans-serif;
+    color: #3b3226;
+  }
+  /* while one is open, the others get out of the way */
+.skills.has-open .acc-item:not(.is-open) {
+  display: none;
+}
+ 
+/* open item: title is no longer clickable, only the X is */
+.acc-item.is-open .acc-trigger {
+  cursor: default;
+}
+.acc-item.is-open .acc-icon {
+  cursor: pointer;
+}
+ 
+ 
+/* 7. SCROLL-UP BUTTON ---------------------------------------------------- */
+.scroll-up {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    right: var(--medium-padding);
+    bottom: var(--medium-padding);
+    z-index: 900;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+ 
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid #f1f1f18c;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+ 
+    color: var(--main-color);
+    font-size: 1.4rem;
+    cursor: pointer;
+ 
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity var(--transition), visibility var(--transition),
+                transform var(--transition), color var(--transition);
+ 
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+ 
+    &:hover {
+        color: var(--hover-color);
+    }
 }
