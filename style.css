@@ -44,7 +44,7 @@ body {
 }
  
  
-/* 3. NAVBAR  */
+/* NAVBAR  */
 .nav {
     display: flex;
     justify-content: space-between;
@@ -136,7 +136,7 @@ body {
         height: var(--nav-height);
  
         a {
-            padding-right: 20px;   /* offsets the negative letter-spacing so the logo looks centered */
+            padding-right: 20px;  
         }
     }
  
@@ -156,7 +156,7 @@ body {
         }
     }
  
-    /* separator line only while the menu is visible */
+ 
     .nav:not(.scrolled) .logo,
     .nav.menu-open .logo {
         width: 90%;
@@ -181,7 +181,7 @@ body {
 }
  
  
-/* 4. HERO  */
+/* HERO  */
 .hey {
     display: flex;
     align-items: flex-end;
@@ -210,7 +210,6 @@ body {
 }
  
  
-/* 5. SECTIONS + CARDS ---------------------------------------------------- */
 .section {
     display: flex;
     justify-content: center;
@@ -249,7 +248,7 @@ body {
 }
  
 .card.alt {
-    border-radius: 16px 0 16px 0;   /* mirrored corners, like your about/skills pair */
+    border-radius: 16px 0 16px 0;   
 }
  
 /* about */
@@ -258,7 +257,7 @@ body {
     justify-content: space-between;
     gap: var(--medium-padding);
     min-height: 500px;
-    padding-bottom: 0;          /* image sits flush on the bottom edge */
+    padding-bottom: 0;         
 }
  
 .text {
@@ -266,7 +265,7 @@ body {
 }
  
 .about-img {
-    display: block;             /* removes the inline-image gap underneath */
+    display: block;             
     align-self: flex-end;
     width: auto;
     height: auto;
@@ -289,7 +288,7 @@ body {
     }
 }
  
-/* skills (your original rules; card padding is off so the accordion offsets stay exactly as before) */
+
 #skills {
   display: flex;
   flex-direction: column;
@@ -361,7 +360,7 @@ body {
  
 @media (max-width: 768px) {
     .footer {
-        padding-bottom: 4.5rem;   /* keeps the links clear of the scroll-up button */
+        padding-bottom: 4.5rem;   
     }
  
     .footer-links {
@@ -370,12 +369,12 @@ body {
 }
  
  
-/* 6. ACCORDION (your original code, untouched) ------------------------------ */
+
  
   .acc-item {
-    background: #eadfc8;           /* beige */
+    background: #eadfc8;          
     border-radius: 35px;
-    width: fit-content;            /* closed: as wide as the title */
+    width: fit-content;           
     max-width: 100%;
     overflow: hidden;
     transition: border-radius .4s cubic-bezier(.32,.72,0,1);
@@ -431,12 +430,12 @@ body {
     font: 17px/1.47 -apple-system, "SF Pro Text", Inter, Arial, sans-serif;
     color: #3b3226;
   }
-  /* while one is open, the others get out of the way */
+ 
 .skills.has-open .acc-item:not(.is-open) {
   display: none;
 }
  
-/* open item: title is no longer clickable, only the X is */
+
 .acc-item.is-open .acc-trigger {
   cursor: default;
 }
@@ -445,7 +444,7 @@ body {
 }
  
  
-/* 7. SCROLL-UP BUTTON ---------------------------------------------------- */
+/* SCROLL-UP BUTTON */
 .scroll-up {
     display: grid;
     place-items: center;
