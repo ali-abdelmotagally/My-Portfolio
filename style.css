@@ -1,6 +1,6 @@
 :root {
     --main-color: #f1f1f1;
-    --hover-color: beige;
+    --hover-color: #f5f5dc;
     --dark: #121212;
     --accent: #3b3226;
     --accent-bg: #eadfc8;
@@ -48,7 +48,17 @@ body {
     position: relative;
     isolation: isolate;
 
-    background: var(--dark);
+background: 
+    radial-gradient(
+    ellipse 45% 100% at 0% 50%,
+    #b8ad97 0%,
+    #766e5d 7%,
+    #514c42 15%,
+    #333333 28%,
+    #22211f 45%,
+    #171615 70%,
+    #121212 100%
+);
     font-family: var(--text-font);
 }
 
@@ -386,10 +396,7 @@ body::before {
 
 
 /* projects */
-/*  PROJECT CAROUSEL */
 
-
-/* Carousel track */
 #projects {
     counter-reset: project;
 
@@ -400,7 +407,7 @@ body::before {
 
     gap: clamp(1rem, 2vw, 1.75rem);
 
-    width: 100dvw;
+    width: 100%;
     box-sizing: border-box;
 
     margin: 8rem 0 0 calc(50% - 50dvw);
@@ -442,7 +449,7 @@ body::before {
     display: none;
 }
 
-/* Individual project card */
+/*  project cards */
 #projects > .project {
     counter-increment: project;
 
@@ -502,7 +509,6 @@ body::before {
     -webkit-backdrop-filter: blur(12px);
 }
 
-/* Soft warm glow */
 #projects > .project::after {
     content: "";
 
@@ -524,7 +530,7 @@ body::before {
     pointer-events: none;
 }
 
-/* Clickable card surface */
+
 #projects > .project .project-link {
     position: relative;
     z-index: 2;
@@ -539,7 +545,7 @@ body::before {
     text-decoration: none;
 }
 
-/* Full-card project image */
+
 #projects > .project .project-cover {
     position: relative;
     inset: auto;
@@ -577,7 +583,7 @@ body::before {
         );
 }
 
-/* Text overlay */
+
 #projects > .project .project-meta {
     position: absolute;
     right: 0;
@@ -613,7 +619,7 @@ body::before {
         inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
-/* Card text */
+
 #projects > .project .project-kicker {
     display: block;
     margin-bottom: 0.75rem;
@@ -719,7 +725,7 @@ body::before {
     display: flex;
     gap: 0.45rem;
 
-    margin-top: 1rem;
+    margin: 0;
 }
 
 #projects > .project::scroll-marker {
@@ -735,13 +741,12 @@ body::before {
     cursor: pointer;
 
     transition:
-        transform 0.25s ease,
         background 0.25s ease;
 }
 
 #projects > .project::scroll-marker:target-current {
     background: var(--accent-bg);
-    transform: scale(1.45);
+  
 }
 
 /* Mobile */
@@ -793,6 +798,7 @@ body::before {
 
 /* CV */
     .cv-container{
+        margin-top: 2rem;;
         display: flex;
         justify-content: center;
         align-items: center;
