@@ -22,38 +22,41 @@ nav.querySelectorAll(".items a").forEach(link => {
 
 function onScroll() {
     const scrolled = window.scrollY >= 0;
- 
+
     nav.classList.toggle("scrolled", scrolled);
-    scrollUp.classList.toggle("show", scrolled);
- 
+    if (scrollUp) scrollUp.classList.toggle("show", scrolled);
+
     if (!scrolled) setMenu(false);
 }
- 
-window.addEventListener("scroll", onScroll, { passive: true });
-onScroll(); 
- 
-scrollUp.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
- 
- 
 
-  const items = document.querySelectorAll('.acc-item');
- 
-  items.forEach(item => {
-    const trigger = item.querySelector('.acc-trigger');
- 
-    trigger.addEventListener('click', () => {
-      const willOpen = !item.classList.contains('is-open');
-
-      items.forEach(i => {
-        i.classList.remove('is-open');
-        i.querySelector('.acc-trigger').setAttribute('aria-expanded', 'false');
-      });
-
-      if (willOpen) {
-        item.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
+if (scrollUp) {
+    scrollUp.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  });
+}
+ 
+
+ const items = document.querySelectorAll('.acc-item');
+const skills = document.querySelector('#skills');
+
+items.forEach(item => {
+    const trigger = item.querySelector('.acc-trigger');
+
+    trigger.addEventListener('click', () => {
+        const willOpen = !item.classList.contains('is-open');
+
+        items.forEach(i => {
+            i.classList.remove('is-open');
+            i.querySelector('.acc-trigger')
+                .setAttribute('aria-expanded', 'false');
+        });
+
+        if (willOpen) {
+            item.classList.add('is-open');
+            trigger.setAttribute('aria-expanded', 'true');
+            skills.classList.add('has-open');
+        } else {
+            skills.classList.remove('has-open');
+        }
+    });
+});

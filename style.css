@@ -992,7 +992,7 @@ body::before {
   }
  
 .skills.has-open .acc-item:not(.is-open) {
-  display: none;
+    display: none;
 }
  
 
