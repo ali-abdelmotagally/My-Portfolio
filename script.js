@@ -1,6 +1,5 @@
 const nav = document.querySelector(".nav");
 const menuBtn = document.querySelector(".menu-btn");
-const scrollUp = document.querySelector(".scroll-up");
  
  
 function setMenu(open) {
@@ -14,26 +13,16 @@ menuBtn.addEventListener("click", () => {
 });
  
 
-nav.querySelectorAll(".items a").forEach(link => {
+nav.querySelectorAll(".items a, .logo a").forEach(link => {
     link.addEventListener("click", () => setMenu(false));
 });
+
+
+// don't leave the menu stuck open after resizing/rotating to desktop width
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) setMenu(false);
+});
  
- 
-
-function onScroll() {
-    const scrolled = window.scrollY >= 0;
-
-    nav.classList.toggle("scrolled", scrolled);
-    if (scrollUp) scrollUp.classList.toggle("show", scrolled);
-
-    if (!scrolled) setMenu(false);
-}
-
-if (scrollUp) {
-    scrollUp.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-}
  
 
  const items = document.querySelectorAll('.acc-item');
