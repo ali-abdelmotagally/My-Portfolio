@@ -21,7 +21,7 @@ nav.querySelectorAll(".items a").forEach(link => {
  
 
 function onScroll() {
-    const scrolled = window.scrollY > 100;
+    const scrolled = window.scrollY >= 0;
  
     nav.classList.toggle("scrolled", scrolled);
     scrollUp.classList.toggle("show", scrolled);
